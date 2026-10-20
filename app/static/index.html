@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Paige</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,480;6..72,560&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div class="brand">
+        <span class="mark" aria-hidden="true"></span>
+        <div>
+          <p class="eyebrow">Page reader</p>
+          <h1>Paige</h1>
+        </div>
+      </div>
+      <p class="lede">
+        Photograph a sheet of paper. Paige finds the page, flattens it, and reads the words with two vision models.
+      </p>
+    </header>
+
+    <main>
+      <section class="stage" aria-label="Page photo">
+        <form id="dropzone" class="dropzone">
+          <span class="crop tl" aria-hidden="true"></span>
+          <span class="crop tr" aria-hidden="true"></span>
+          <span class="crop bl" aria-hidden="true"></span>
+          <span class="crop br" aria-hidden="true"></span>
+          <div id="prompt" class="prompt">
+            <p class="prompt-title">Drop a photo of a page</p>
+            <p class="prompt-copy">JPEG, PNG, or WebP, up to 8 MB. A plain photo of notes works.</p>
+          </div>
+          <img id="preview" class="preview" alt="Straightened page with the lines Paige found" hidden />
+          <div class="toolbar">
+            <label class="button primary">
+              Choose image
+              <input id="file" type="file" accept="image/jpeg,image/png,image/webp" hidden />
+            </label>
+            <button id="sample" class="button" type="button">Try a sample page</button>
+          </div>
+          <p id="status" class="status" role="status" hidden></p>
+        </form>
+      </section>
+
+      <section class="readout" aria-live="polite">
+        <div class="readout-head">
+          <h2>Transcript</h2>
+          <button id="copy" class="button" type="button" disabled>Copy</button>
+        </div>
+        <p id="meta" class="meta">Nothing read yet.</p>
+        <p id="placeholder" class="transcript">The words from the page will land here.</p>
+        <ol id="lines" class="lines"></ol>
+      </section>
+    </main>
+
+    <footer>
+      <p>Detector <code>db_mobilenet_v3_large</code> finds each line. Recognizer <code>crnn_mobilenet_v3_small</code> reads it.</p>
+    </footer>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
